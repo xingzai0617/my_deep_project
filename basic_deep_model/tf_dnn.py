@@ -36,15 +36,6 @@ def DNNModel(images, w, b, keepprob):
 &usage:		定义参数和变量
 '''
 # -----------------------------------------------------------------------------------------------------
-input_size = 784
-hidden1_size = 512
-hidden2_size = 256
-output_size = 10
-learning_rate_base = 0.005
-epochs = 2
-batch_size = 1000
-batch_nums = mnist.train.labels.shape[0] // batch_size
-
 
 x = tf.placeholder(tf.float32, [None, 784])
 keepprob = tf.placeholder(tf.float32)
@@ -72,6 +63,16 @@ opt = tf.train.AdamOptimizer(learning_rate).minimize(loss, global_step=global_st
 # ==============定义评估模型============
 predict = tf.equal(tf.argmax(logits, 1), tf.argmax(y_, 1))
 acc = tf.reduce_mean(tf.cast(predict, tf.float32))
+
+
+input_size = 784
+hidden1_size = 512
+hidden2_size = 256
+output_size = 10
+learning_rate_base = 0.005
+epochs = 2
+batch_size = 1000
+batch_nums = mnist.train.labels.shape[0] // batch_size
 
 # -----------------------------------------------------------------------------------------------------
 '''

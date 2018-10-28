@@ -1,7 +1,7 @@
 # -----------------------------------------------------------------------------------------------------
 '''
 @author:	hongwen sun
-&usage:		TensorFlow练习之卷积神经网络
+&usage:		TensorFlow练习之循环神经网络
 '''
 # -----------------------------------------------------------------------------------------------------
 import tensorflow as tf
@@ -14,13 +14,7 @@ print('train image shape:', mnist.train.images.shape, 'trian label shape:', mnis
 print('val image shape:', mnist.validation.images.shape)
 print('test image shape:', mnist.test.images.shape)
 
-
-epochs = 10
-batch_size = 1000
-batch_nums = mnist.train.labels.shape[0] // batch_size
-
-
-
+# =============定义网络结构==============
 def rnn(x, batch_size, keepprob):
 	hidden_size = 28
 	rnn_layers = 2
@@ -37,6 +31,7 @@ def rnn(x, batch_size, keepprob):
 	output = tf.matmul(output, w) + b
 	return output
 
+# ==========定义所需占位符=============
 x = tf.placeholder(tf.float32, [None, 28, 28])
 y_ = tf.placeholder(tf.float32, [None, 10])
 keepprob = tf.placeholder(tf.float32)
@@ -53,14 +48,21 @@ opt = tf.train.AdamOptimizer(learning_rate).minimize(loss, global_step=global_st
 # ==============定义评估模型============
 predict = tf.equal(tf.argmax(logits, 1), tf.argmax(y_, 1))
 acc = tf.reduce_mean(tf.cast(predict, tf.float32))
-# 开始训练
+
+
+epochs = 10
+batch_size = 1000
+batch_nums = mnist.train.labels.shape[0] // batch_size
+
+# ================开始训练==============
 with tf.Session() as sess:
 	sess.run(tf.global_variables_initializer())
 	for k in range(epochs):
 		for i in range(batch_nums):
+			# ==============梯度下降进行训练=============================
 			xs, ys = mnist.train.next_batch(batch_size)
 			sess.run(opt, {x: xs.reshape((-1, 28, 28)), y_: ys, keepprob: 0.8})
-			# 评估模型在验证集上的识别率
+			# ==============评估模型在验证集上的识别率====================
 			if i % 50 == 0:
 				val_losses = 0
 				accuracy = 0
