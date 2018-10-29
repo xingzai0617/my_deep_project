@@ -1,7 +1,7 @@
 # -----------------------------------------------------------------------------------------------------
 '''
 @author:	hongwen sun
-&usage:		TensorFlow练习之卷积神经网络
+&usage:		TensorFlow练习之全连接神经网络
 '''
 # -----------------------------------------------------------------------------------------------------
 import tensorflow as tf
@@ -15,12 +15,7 @@ print('val image shape:', mnist.validation.images.shape)
 print('test image shape:', mnist.test.images.shape)
 
 
-# -----------------------------------------------------------------------------------------------------
-'''
-&usage:		DNN网络建模
-'''
-# -----------------------------------------------------------------------------------------------------
-
+# =============定义网络结构==============
 def dense(x, w, b, keepprob, name):
 	return tf.nn.dropout(tf.nn.relu(tf.matmul(x, w) + b, name=name), keepprob)
 
@@ -31,12 +26,7 @@ def DNNModel(images, w, b, keepprob):
 	output = tf.matmul(dense2, w[2]) + b[2]
 	return output
 
-# -----------------------------------------------------------------------------------------------------
-'''
-&usage:		定义参数和变量
-'''
-# -----------------------------------------------------------------------------------------------------
-
+# ==========定义所需占位符=============
 x = tf.placeholder(tf.float32, [None, 784])
 keepprob = tf.placeholder(tf.float32)
 y_ = tf.placeholder(tf.float32, [None, 10])
@@ -65,6 +55,7 @@ predict = tf.equal(tf.argmax(logits, 1), tf.argmax(y_, 1))
 acc = tf.reduce_mean(tf.cast(predict, tf.float32))
 
 
+
 input_size = 784
 hidden1_size = 512
 hidden2_size = 256
@@ -74,11 +65,7 @@ epochs = 2
 batch_size = 1000
 batch_nums = mnist.train.labels.shape[0] // batch_size
 
-# -----------------------------------------------------------------------------------------------------
-'''
-&usage:		开始训练
-'''
-# -----------------------------------------------------------------------------------------------------
+# ================开始训练==============
 saver = tf.train.Saver()
 with tf.Session() as sess:
 	sess.run(tf.global_variables_initializer())
