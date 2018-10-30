@@ -29,7 +29,9 @@ model = Model(input=inputs, output=outputs)
 
 # ============训练所需损失函数==========
 opt = Adam(lr=0.003, beta_1=0.9, beta_2=0.999, epsilon=1e-08)
-model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
+model.compile(optimizer=opt, loss='categorical_crossentropy', metrics=['accuracy'])
 
 # ================开始训练==============
 model.fit(x=xs, y=ys, validation_split=0.1, epochs=1)
+
+model.save('k_dnn.h5')

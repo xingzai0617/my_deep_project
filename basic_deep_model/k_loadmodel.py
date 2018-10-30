@@ -7,7 +7,7 @@
 
 from keras.models import load_model
 from tensorflow.examples.tutorials.mnist import input_data
-mnist = input_data.read_data_sets("mnist/", one_hot = True)
+mnist = input_data.read_data_sets("mnist/", one_hot = True, reshape=False)
 xs = mnist.test.images
 ys = mnist.test.labels
 

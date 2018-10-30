@@ -14,6 +14,10 @@ print('train image shape:', mnist.train.images.shape, 'trian label shape:', mnis
 print('val image shape:', mnist.validation.images.shape)
 print('test image shape:', mnist.test.images.shape)
 
+epochs = 10
+batch_size = 1000
+batch_nums = mnist.train.labels.shape[0] // batch_size
+
 # =============定义网络结构==============
 def rnn(x, batch_size, keepprob):
 	hidden_size = 28
@@ -22,14 +26,11 @@ def rnn(x, batch_size, keepprob):
 	rnn_drop = tf.contrib.rnn.DropoutWrapper(rnn_cell, output_keep_prob=keepprob)
 	multi_cell = tf.contrib.rnn.MultiRNNCell([rnn_drop] * 2)
 	state = multi_cell.zero_state(batch_size, tf.float32)
-	with tf.variable_scope('RNN'):
-		for i in range(28):
-			if i > 0: tf.get_variable_scope().reuse_variables()
-			output, state = multi_cell(x[:, i, :], state)
+	outputs, states = tf.nn.dynamic_rnn(multi_cell, x, initial_state=state)
 	w = tf.Variable(tf.random_normal([28, 10]))
 	b = tf.Variable(tf.random_normal([10]))
-	output = tf.matmul(output, w) + b
-	return output
+	output = tf.matmul(outputs[:,-1,:], w) + b
+	return output, states
 
 # ==========定义所需占位符=============
 x = tf.placeholder(tf.float32, [None, 28, 28])
@@ -41,7 +42,7 @@ global_step = tf.Variable(0)
 learning_rate = tf.train.exponential_decay(0.01, global_step, 10, 0.96, staircase=True)
 
 # ============训练所需损失函数==========
-logits = rnn(x, batch_size, keepprob)
+logits, states = rnn(x, batch_size, keepprob)
 loss = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(logits=logits, labels=y_))
 opt = tf.train.AdamOptimizer(learning_rate).minimize(loss, global_step=global_step)
 
@@ -49,10 +50,6 @@ opt = tf.train.AdamOptimizer(learning_rate).minimize(loss, global_step=global_st
 predict = tf.equal(tf.argmax(logits, 1), tf.argmax(y_, 1))
 acc = tf.reduce_mean(tf.cast(predict, tf.float32))
 
-
-epochs = 10
-batch_size = 1000
-batch_nums = mnist.train.labels.shape[0] // batch_size
 
 # ================开始训练==============
 with tf.Session() as sess:
