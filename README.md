@@ -1,6 +1,6 @@
 # my_deep_project
 
-项目地址：[https://github.com/audier/my_deep_project](https://github.com/audier/my_deep_project)
+项目地址：[https://github.com/audier/my_deep_project](https://github.com/audier/my_deep_project)    
 最近准备整理一些使用深度模型实现的项目，作为工作学习的一个整理。
 
 ## 0. 深度学习项目规范
