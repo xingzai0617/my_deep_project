@@ -15,9 +15,9 @@
 按照这个结构处理深度学习的任务，会更加规范更易提升，后续我将严格按照这个流程执行自己的项目以及整理回溯。
  
 ## 1. 深度学习入门项目 
-文档地址：https://blog.csdn.net/chinatelecom08/article/details/83413623#_5
-
+文档地址：https://blog.csdn.net/chinatelecom08/article/details/83413623	
 项目地址：https://github.com/audier/my_deep_project/tree/master/basic_deep_model
+
 1.	**TensorFlow实现mnist分类**
 	- DNN示例
 	- CNN示例
@@ -30,14 +30,14 @@
 ## 2. 自然语言处理
 1. **文章自动生成**
 文档地址：https://blog.csdn.net/chinatelecom08/article/details/83654602
-
 项目地址：https://github.com/audier/my_deep_project/tree/master/NLP/1.moyan_novel
+
 	- lstm : tensorflow
 	- lstm : keras
 2. **翻译系统**
 文档地址：https://blog.csdn.net/chinatelecom08/article/details/83860179
-
 项目地址：https://github.com/audier/my_deep_project/tree/master/NLP/2.translation
+
 	- seq2seq (tensorflow)
 	- seq2seq + attention (tensorflow)
 4. **对话系统**
@@ -48,8 +48,8 @@
 
 ## 3. 语音识别 
 文档地址：https://blog.csdn.net/chinatelecom08/article/details/82557715
-
 项目地址：https://github.com/audier/my_ch_speech_recognition
+
 1. CTC + RNN
 2. CTC + CNN 
 3. seq2seq +attention (keras)
