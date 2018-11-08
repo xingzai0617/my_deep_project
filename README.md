@@ -28,21 +28,21 @@
 	- RNN示例
 
 ## 2. 自然语言处理
-1. **文章自动生成**
+1. **文章自动生成**    
 文档地址：https://blog.csdn.net/chinatelecom08/article/details/83654602    
 项目地址：https://github.com/audier/my_deep_project/tree/master/NLP/1.moyan_novel
 
 	- lstm : tensorflow
 	- lstm : keras
-2. **翻译系统**
+2. **翻译系统**    
 文档地址：https://blog.csdn.net/chinatelecom08/article/details/83860179    
 项目地址：https://github.com/audier/my_deep_project/tree/master/NLP/2.translation
 
 	- seq2seq (tensorflow)
 	- seq2seq + attention (tensorflow)
-4. **对话系统**
+4. **对话系统**    
 	- seq2seq +attention (keras)
-5. **输入法系统**
+5. **输入法系统**    
 	- CBHG (tensorflow)
 	- CBHG (keras)
 
