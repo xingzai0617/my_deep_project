@@ -36,7 +36,6 @@ print('char:', en_data[1])
 print('index:', en_num_data[1])
 
 
-
 import numpy as np
 
 # 获取输入输出端的最大长度

@@ -1,0 +1,7 @@
+
+*.DESKTOP-KLLCF4R
+*.meta
+*.ipynb
+NLP/2.translation/checkpoints/checkpoint
+*.data-00000-of-00001
+*.index
