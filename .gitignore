@@ -1,7 +1,8 @@
 
 *.DESKTOP-KLLCF4R
 *.meta
-*.ipynb
 NLP/2.translation/checkpoints/checkpoint
 *.data-00000-of-00001
 *.index
+NLP/2.translation/.ipynb_checkpoints/attention-checkpoint.ipynb
+NLP/2.translation/.ipynb_checkpoints/tf_translation-checkpoint.ipynb
